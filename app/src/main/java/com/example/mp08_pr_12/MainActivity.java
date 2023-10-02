@@ -28,11 +28,12 @@ public class MainActivity extends AppCompatActivity {
         TextView intents = (TextView) findViewById(R.id.textView);
         TextView registre = (TextView) findViewById(R.id.textView2);
         Button button = (Button) findViewById(R.id.button);
-
+        intents.setText("Intents: " + cont);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                String auxRegistre = registre.getText().toString();
                 ++cont;
-
+                intents.setText("Intents: " + cont);
                 EditText input = (EditText) findViewById(R.id.editTextNumber);
                 // Do something in response to button click
                 String text = "";
@@ -52,13 +53,15 @@ public class MainActivity extends AppCompatActivity {
                 }else if(Integer.parseInt(input.getText().toString()) < randNum){
                     Toast toast = Toast.makeText(MainActivity.this, "El número es més gran ("+randNum+")", Toast.LENGTH_SHORT);
                     toast.show();
+                    auxRegistre += "X >";
                 }else{
                     Toast toast = Toast.makeText(MainActivity.this, "El número es més petit ("+randNum+")", Toast.LENGTH_SHORT);
                     toast.show();
+                    auxRegistre += "X <";
                 }
 
-
-
+                auxRegistre += input.getText() + "\n";
+                registre.setText(auxRegistre);
             }
         });
     }
