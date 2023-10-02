@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
                     msg.setPositiveButton("Tornar a jugar", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             // User clicked OK button
+                            intents.setText("Intents: 0");
+                            cont = 0;
+                            registre.setText("");
                             randNum = rand.nextInt(99)+1;
                             dialog.dismiss();
                         }
