@@ -64,10 +64,11 @@ public class MainActivity extends AppCompatActivity {
                         toast.show();
                         auxRegistre += "X <";
                     }
-                }
+                    auxRegistre += input.getText() + "\n";
+                    registre.setText(auxRegistre);
 
-                auxRegistre += input.getText() + "\n";
-                registre.setText(auxRegistre);
+                    input.setText("");
+                }
             }
         });
     }
