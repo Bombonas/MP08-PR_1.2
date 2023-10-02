@@ -32,35 +32,38 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String auxRegistre = registre.getText().toString();
-                ++cont;
-                intents.setText("Intents: " + cont);
+
                 EditText input = (EditText) findViewById(R.id.editTextNumber);
                 // Do something in response to button click
                 String text = "";
-                if(Integer.parseInt(input.getText().toString()) == randNum){
-                    AlertDialog.Builder msg = new AlertDialog.Builder(MainActivity.this);
-                    msg.setMessage("Has guanyat :D");
-                    msg.setPositiveButton("Tornar a jugar", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User clicked OK button
-                            intents.setText("Intents: 0");
-                            cont = 0;
-                            registre.setText("");
-                            randNum = rand.nextInt(99)+1;
-                            dialog.dismiss();
-                        }
-                    });
-                    AlertDialog dialog = msg.create();
-                    dialog.show();
+                if(!input.getText().toString().equals("")) {
+                    ++cont;
+                    intents.setText("Intents: " + cont);
+                    if (Integer.parseInt(input.getText().toString()) == randNum) {
+                        AlertDialog.Builder msg = new AlertDialog.Builder(MainActivity.this);
+                        msg.setMessage("Has guanyat :D");
+                        msg.setPositiveButton("Tornar a jugar", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User clicked OK button
+                                intents.setText("Intents: 0");
+                                cont = 0;
+                                registre.setText("");
+                                randNum = rand.nextInt(99) + 1;
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = msg.create();
+                        dialog.show();
 
-                }else if(Integer.parseInt(input.getText().toString()) < randNum){
-                    Toast toast = Toast.makeText(MainActivity.this, "El número es més gran ("+randNum+")", Toast.LENGTH_SHORT);
-                    toast.show();
-                    auxRegistre += "X >";
-                }else{
-                    Toast toast = Toast.makeText(MainActivity.this, "El número es més petit ("+randNum+")", Toast.LENGTH_SHORT);
-                    toast.show();
-                    auxRegistre += "X <";
+                    } else if (Integer.parseInt(input.getText().toString()) < randNum) {
+                        Toast toast = Toast.makeText(MainActivity.this, "El número es més gran (" + randNum + ")", Toast.LENGTH_SHORT);
+                        toast.show();
+                        auxRegistre += "X >";
+                    } else {
+                        Toast toast = Toast.makeText(MainActivity.this, "El número es més petit (" + randNum + ")", Toast.LENGTH_SHORT);
+                        toast.show();
+                        auxRegistre += "X <";
+                    }
                 }
 
                 auxRegistre += input.getText() + "\n";
