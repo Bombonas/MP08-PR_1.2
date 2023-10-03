@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,13 +14,20 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private static int randNum;
     private static int cont;
+
+    public static ArrayList<Record> records;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        records = new ArrayList<Record>();
+        records.add(new Record("Pablo", 1));
+        records.add(new Record("Pablon't", 1007));
+        records.add(new Record("Carlos", 7));
         Random rand = new Random();
         cont = 0;
         randNum = rand.nextInt(99)+1;
@@ -42,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
                     if (Integer.parseInt(input.getText().toString()) == randNum) {
                         AlertDialog.Builder msg = new AlertDialog.Builder(MainActivity.this);
                         msg.setMessage("Has guanyat :D");
+                        msg.setNegativeButton("Ranking", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(MainActivity.this, RankingActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                         msg.setPositiveButton("Tornar a jugar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // User clicked OK button
