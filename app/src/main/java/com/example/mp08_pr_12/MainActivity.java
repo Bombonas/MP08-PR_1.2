@@ -50,9 +50,18 @@ public class MainActivity extends AppCompatActivity {
                     if (Integer.parseInt(input.getText().toString()) == randNum) {
                         AlertDialog.Builder msg = new AlertDialog.Builder(MainActivity.this);
                         msg.setMessage("Has guanyat :D");
+
+                        // Set an EditText view to get user input
+                        final EditText inputName = new EditText(MainActivity.this);
+                        msg.setView(inputName);
                         msg.setNegativeButton("Ranking", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(MainActivity.this, RankingActivity.class);
+                                if(!inputName.getText().toString().equals("")){
+                                    records.add(new Record(inputName.getText().toString(), cont));
+                                }else{
+                                    records.add(new Record("NoName", cont));
+                                }
                                 startActivity(intent);
                             }
                         });
