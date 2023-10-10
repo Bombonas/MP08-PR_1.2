@@ -6,6 +6,8 @@ public class Record {
     public String name;
     public int intents;
 
+    public String temps;
+
     public Record(String name, int intents){
         this.name = name;
         this.intents = intents;
